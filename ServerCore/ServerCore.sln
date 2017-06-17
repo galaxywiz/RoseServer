@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "packetMaker", "..\packetMaker\packetMaker.csproj", "{27B177C3-CE22-49E1-9CAD-42C7154300A3}"
 EndProject
@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{92A842
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{5F135202-5622-43EF-B1F5-3397FA339F74}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Util", "Util", "{D98D45E0-49EE-4911-8AD1-C990B9CD4A34}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tool", "Tool", "{D98D45E0-49EE-4911-8AD1-C990B9CD4A34}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChattingServer", "ChattingServer\ChattingServer.vcxproj", "{1FE87616-8B24-4977-BBD6-F58F32684E51}"
 EndProject
@@ -51,8 +51,8 @@ Global
 		{27B177C3-CE22-49E1-9CAD-42C7154300A3}.Release|x64.ActiveCfg = Release|Any CPU
 		{043F7836-D119-4491-88F1-DB6334219A32}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{043F7836-D119-4491-88F1-DB6334219A32}.Debug|ARM.ActiveCfg = Debug|Win32
-		{043F7836-D119-4491-88F1-DB6334219A32}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{043F7836-D119-4491-88F1-DB6334219A32}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{043F7836-D119-4491-88F1-DB6334219A32}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{043F7836-D119-4491-88F1-DB6334219A32}.Debug|Mixed Platforms.Build.0 = Debug|x64
 		{043F7836-D119-4491-88F1-DB6334219A32}.Debug|Win32.ActiveCfg = Debug|Win32
 		{043F7836-D119-4491-88F1-DB6334219A32}.Debug|Win32.Build.0 = Debug|Win32
 		{043F7836-D119-4491-88F1-DB6334219A32}.Debug|x64.ActiveCfg = Debug|x64
@@ -67,8 +67,8 @@ Global
 		{043F7836-D119-4491-88F1-DB6334219A32}.Release|x64.Build.0 = Release|x64
 		{E88085C2-D120-4E12-AA30-C848FF4B36AB}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{E88085C2-D120-4E12-AA30-C848FF4B36AB}.Debug|ARM.ActiveCfg = Debug|Win32
-		{E88085C2-D120-4E12-AA30-C848FF4B36AB}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{E88085C2-D120-4E12-AA30-C848FF4B36AB}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{E88085C2-D120-4E12-AA30-C848FF4B36AB}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{E88085C2-D120-4E12-AA30-C848FF4B36AB}.Debug|Mixed Platforms.Build.0 = Debug|x64
 		{E88085C2-D120-4E12-AA30-C848FF4B36AB}.Debug|Win32.ActiveCfg = Debug|Win32
 		{E88085C2-D120-4E12-AA30-C848FF4B36AB}.Debug|Win32.Build.0 = Debug|Win32
 		{E88085C2-D120-4E12-AA30-C848FF4B36AB}.Debug|x64.ActiveCfg = Debug|x64
@@ -83,8 +83,8 @@ Global
 		{E88085C2-D120-4E12-AA30-C848FF4B36AB}.Release|x64.Build.0 = Release|x64
 		{1515F39A-0956-4F01-A163-2960DC0B49F3}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{1515F39A-0956-4F01-A163-2960DC0B49F3}.Debug|ARM.ActiveCfg = Debug|Win32
-		{1515F39A-0956-4F01-A163-2960DC0B49F3}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{1515F39A-0956-4F01-A163-2960DC0B49F3}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{1515F39A-0956-4F01-A163-2960DC0B49F3}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{1515F39A-0956-4F01-A163-2960DC0B49F3}.Debug|Mixed Platforms.Build.0 = Debug|x64
 		{1515F39A-0956-4F01-A163-2960DC0B49F3}.Debug|Win32.ActiveCfg = Debug|Win32
 		{1515F39A-0956-4F01-A163-2960DC0B49F3}.Debug|Win32.Build.0 = Debug|Win32
 		{1515F39A-0956-4F01-A163-2960DC0B49F3}.Debug|x64.ActiveCfg = Debug|x64
@@ -99,8 +99,8 @@ Global
 		{1515F39A-0956-4F01-A163-2960DC0B49F3}.Release|x64.Build.0 = Release|x64
 		{1FE87616-8B24-4977-BBD6-F58F32684E51}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{1FE87616-8B24-4977-BBD6-F58F32684E51}.Debug|ARM.ActiveCfg = Debug|Win32
-		{1FE87616-8B24-4977-BBD6-F58F32684E51}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{1FE87616-8B24-4977-BBD6-F58F32684E51}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{1FE87616-8B24-4977-BBD6-F58F32684E51}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{1FE87616-8B24-4977-BBD6-F58F32684E51}.Debug|Mixed Platforms.Build.0 = Debug|x64
 		{1FE87616-8B24-4977-BBD6-F58F32684E51}.Debug|Win32.ActiveCfg = Debug|Win32
 		{1FE87616-8B24-4977-BBD6-F58F32684E51}.Debug|Win32.Build.0 = Debug|Win32
 		{1FE87616-8B24-4977-BBD6-F58F32684E51}.Debug|x64.ActiveCfg = Debug|x64

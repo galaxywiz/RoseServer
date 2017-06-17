@@ -10,7 +10,7 @@ private:
 
 protected:
 	typedef void(*RunFunc)(Session *session, Packet *rowPacket);
-	hash_map<PacketType, RunFunc> runFuncTable_;
+	unordered_map<PacketType, RunFunc> runFuncTable_;
 
 private:
 	void initialize(xml_t *config);

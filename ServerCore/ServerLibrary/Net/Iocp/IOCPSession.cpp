@@ -76,7 +76,7 @@ bool IoData::setData(Stream &stream)
 
 	char *buf = buffer_.data();
 	//									 head size  + real data size
-	packet_size_t packetLen[1] = { packetHeaderSize + (packet_size_t)stream.size(), };
+	packet_size_t packetLen[1] = { (packet_size_t)packetHeaderSize + (packet_size_t)stream.size(), };
 	// insert packet len
 	memcpy_s(buf + offset, buffer_.max_size(), (void *)packetLen, packetHeaderSize);
 	offset += packetHeaderSize;

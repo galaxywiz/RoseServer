@@ -16,7 +16,7 @@ class SessionManager : public Singleton<SessionManager>
 	oid_t						idSeed_;
 
     typedef std::function<void (SessionList *sessionList, wstr_t *arg)> cmdFunc;
-    hash_map<wstr_t, cmdFunc>   serverCommand_;
+	unordered_map<wstr_t, cmdFunc>   serverCommand_;
 
 public:
 	SessionManager();

@@ -38,7 +38,7 @@ void TerminalSession::sendPacket(Packet *packet)
 	const size_t packetHeaderSize = sizeof(packet_size_t);
 
 	//									 head size  + real data size
-	packet_size_t packetLen[1] = { packetHeaderSize + (packet_size_t)stream.size(), };
+	packet_size_t packetLen[1] = { (packet_size_t)packetHeaderSize + (packet_size_t)stream.size(), };
 	// insert packet len
 	memcpy_s(buffer.data() + offset, buffer.max_size(), (void *)packetLen, packetHeaderSize);
 	offset += packetHeaderSize;

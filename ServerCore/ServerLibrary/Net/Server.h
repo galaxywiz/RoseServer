@@ -2,7 +2,7 @@
 #include "stdafx.h"
 #include "SessionManager.h"
 
-typedef enum SERVER_STATUS {
+enum SERVER_STATUS {
 	SERVER_STOP,
 	SERVER_INITIALZE,
 	SERVER_READY,

@@ -2,7 +2,7 @@
 #include "stdafx.h"
 
 // 터미널 쓰레드, 타 서버와 연결해서 데이터 송수신에 사용한다.
-typedef enum TERMINAL_STATUS {
+enum TERMINAL_STATUS {
 	TERMINAL_STOP,
 	TERMINAL_READY,
 };

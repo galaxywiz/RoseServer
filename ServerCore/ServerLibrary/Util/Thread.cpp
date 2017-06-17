@@ -6,7 +6,7 @@ Thread::Thread(thread_t *thread, wstr_t name)
 {
 	name_ = name;
 	thread_ = thread;
-	id_ = thread_->get_id().hash();
+	id_ = thread_->get_id();
 
 	ThreadManager::getInstance().put(this);
 }
@@ -18,7 +18,7 @@ Thread::~Thread()
 	SAFE_DELETE(lock_);
 }
 
-size_t Thread::id()
+threadId_t Thread::id()
 {
 	return id_;
 }
@@ -48,12 +48,12 @@ ThreadManager::~ThreadManager()
 
 void ThreadManager::put(Thread *thread)
 {
-	std::pair<size_t, Thread *> node(thread->id(), thread);
+	std::pair<threadId_t, Thread *> node(thread->id(), thread);
 	threadPool_.insert(node);
 	SLog(L"* create thread : id[0x%X] name[%s], pool size[%d]", thread->id(), thread->name().c_str(), threadPool_.size());
 }
 
-void ThreadManager::remove(size_t id)
+void ThreadManager::remove(threadId_t id)
 {
 	auto iter = threadPool_.find(id);
 	if (iter == threadPool_.end()) {
@@ -63,7 +63,7 @@ void ThreadManager::remove(size_t id)
 	threadPool_.erase(iter);
 }
 
-Thread* ThreadManager::at(size_t id)
+Thread* ThreadManager::at(threadId_t id)
 {
 	if (threadPool_.empty()) {
 		return nullptr;

@@ -53,12 +53,12 @@ void Lock::unlock()
 	lockingLine_ = INVALID_LINE;
 }
 
-void Lock::setThreadId(size_t id)
+void Lock::setThreadId(threadId_t id)
 {
 	threadId_ = id;
 }
 
-size_t Lock::threadId()
+threadId_t Lock::threadId()
 {
 	return threadId_;
 }
@@ -100,7 +100,7 @@ LockSafeScope::~LockSafeScope()
 		return;
 	}
 	lock_->unlock();
-	lock_->setThreadId(0);
+	//lock_->setThreadId(nullptr);
 }
 
 //-------------------------------------------------------//

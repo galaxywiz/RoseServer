@@ -3,7 +3,7 @@
 
 class TerminalManager : public Singleton<TerminalManager>
 {
-	hash_map<wstr_t, Terminal*> terminalPool_;
+	unordered_map<wstr_t, Terminal*> terminalPool_;
 	Server						*server_;
 
 public:

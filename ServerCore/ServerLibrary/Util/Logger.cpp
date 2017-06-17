@@ -105,7 +105,7 @@ void LogWriter::log(WCHAR *fmt, ...)
 void LogWriter::log(WCHAR *fmt, va_list args)
 {
 	wstr_t logMessage = CLOCK.nowTimeWithMilliSec();
-	size_t threadId = GET_CURRENT_THREAD_ID();
+	threadId_t threadId = GET_CURRENT_THREAD_ID();
 
 	logMessage += L"\t";
 
@@ -117,12 +117,12 @@ void LogWriter::log(WCHAR *fmt, va_list args)
 	else {
 		logMessage += prefix_;
 	}
-	array<WCHAR, SIZE_8 * 2> threadIdStr;
-	snwprintf(threadIdStr, L"0x%X", threadId);
+	//array<WCHAR, SIZE_8 * 2> threadIdStr;
+	//snwprintf(threadIdStr, L"0x%X", (unsigned int) threadId);
 
-	logMessage += L":";
-	logMessage += threadIdStr.data();
-	logMessage += L"\t";
+	//logMessage += L":";
+	//logMessage += threadIdStr.data();
+	//logMessage += L"\t";
 
 	array<WCHAR, SIZE_1024> logStr;
 
