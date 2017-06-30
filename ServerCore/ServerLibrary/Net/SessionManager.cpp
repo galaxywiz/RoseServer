@@ -2,22 +2,22 @@
 #include "SessionManager.h"
 #include "./Iocp/IOCPServer.h"
 
-SessionManager::SessionManager()
-: lock_(L"SessionManager")
+SessionManager::SessionManager(int maxConnection)
+	: lock_(L"SessionManager")
 {
-	idSeed_ = 1;
-	maxConnection_ = SESSION_CAPACITY;
+	sessionSeed_ = 1;
+	maxConnection_ = maxConnection;
 	this->commandFuncInitialize();
 }
 
 SessionManager::~SessionManager()
 {
-    vector<Session *> removeSessionVec;
-    removeSessionVec.resize(sessionList_.size());
-    std::copy(sessionList_.begin(), sessionList_.end(), removeSessionVec.begin());
-    for (auto session : removeSessionVec) {
-        session->onClose();
-    }
+	vector<Session *> removeSessionVec;
+	removeSessionVec.resize(sessionList_.size());
+	std::copy(sessionList_.begin(), sessionList_.end(), removeSessionVec.begin());
+	for (auto session : removeSessionVec) {
+		session->onClose();
+	}
 	sessionList_.clear();
 }
 
@@ -28,13 +28,13 @@ list<Session*>& SessionManager::sessionList()
 
 oid_t SessionManager::createSessionId()
 {
-	return idSeed_++;
+	return sessionSeed_++;
 }
 
 bool SessionManager::addSession(Session *session)
 {
-    SAFE_LOCK(lock_);
-	auto findSession = std::find(sessionList_.begin(), sessionList_.end(), session);	
+	SAFE_LOCK(lock_);
+	auto findSession = std::find(sessionList_.begin(), sessionList_.end(), session);
 	if (findSession != sessionList_.end()) {
 		return false;
 	}
@@ -52,7 +52,7 @@ bool SessionManager::addSession(Session *session)
 //소켓을 닫으라는 클라이언트에게 보냅니다.
 bool SessionManager::closeSession(Session *session)
 {
-    SAFE_LOCK(lock_);
+	SAFE_LOCK(lock_);
 	if (session == nullptr) {
 		return false;
 	}
@@ -73,7 +73,7 @@ bool SessionManager::closeSession(Session *session)
 //소켓을 강제로 닫습니다.
 void SessionManager::forceCloseSession(Session *session)
 {
-    SAFE_LOCK(lock_);
+	SAFE_LOCK(lock_);
 	if (!session) {
 		return;
 	}
@@ -98,29 +98,30 @@ Session* SessionManager::session(oid_t id)
 			break;
 		}
 	}
-
+	
 	return findSession;
 }
 
 void SessionManager::runCommand(wstr_t cmdLine)
 {
-    std::size_t found = cmdLine.find(L' ');
-    wstr_t command;
-    wstr_t arg;
-    if (found != wstr_t::npos){
-        command = cmdLine.substr(0, found);
-        arg = cmdLine.substr(found);
-    }
-    else {
-        command = cmdLine;
-    }
-    
-    auto cmdFunc = serverCommand_.at(command);
-    if (cmdFunc) {
-        cmdFunc(&sessionList_, &arg);
-    }
+	std::size_t found = cmdLine.find(L' ');
+	wstr_t command;
+	wstr_t arg;
+	if (found != wstr_t::npos) {
+		command = cmdLine.substr(0, found);
+		arg = cmdLine.substr(found);
+	}
+	else {
+		command = cmdLine;
+	}
+
+	auto cmdFunc = serverCommand_.at(command);
+	if (cmdFunc) {
+		cmdFunc(&sessionList_, &arg);
+	}
 }
 
+// 서버에서 내리는 치트키 정의
 void SessionManager::commandFuncInitialize()
 {
 #if 0

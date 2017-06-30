@@ -36,7 +36,7 @@ public:
 			record_.moveNext();
 		}
 
-		Terminal *terminal = TerminalManager::getInstance().terminal(L"ChattingServer");
+		Terminal *terminal = _terminal.get(L"ChattingServer");
 		terminal->sendPacket(&iPacket);
 	}
 };

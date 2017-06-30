@@ -153,7 +153,22 @@ bool QueryRecord::get(char* fieldName, wchar_t* fieldValue)
 	return false;
 }
 
-bool QueryRecord::get(char* fieldName, int& fieldValue)
+bool QueryRecord::get(char* fieldName, int32_t& fieldValue)
+{
+	try {
+		_variant_t  vtValue;
+		vtValue = record_->Fields->GetItem(fieldName)->GetValue();
+		fieldValue = vtValue.intVal;
+		return true;
+	}
+	catch (_com_error &e) {
+		this->errorReport(e);
+		SLog(L"! error query field : %S", fieldName);
+	}
+	return false;
+}
+
+bool QueryRecord::get(char* fieldName, int64_t& fieldValue)
 {
 	try {
 		_variant_t  vtValue;

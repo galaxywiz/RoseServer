@@ -37,7 +37,7 @@ public:
 			record_.moveNext();
 		}
 
-		Terminal *terminal = TerminalManager::getInstance().terminal(L"LoginServer");
+		Terminal *terminal = _terminal.get(L"LoginServer");
 		terminal->sendPacket(&iPacket);
 	}
 };

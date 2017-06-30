@@ -35,8 +35,7 @@ public:
 	void operator << (const INT64 &value);
 	void operator << (const UINT64 &value);
 
-	template<class T>
-	void operator << (const std::vector<T> &value);
+	void operator << (const std::vector<wstr_t> &value);
 
 	void operator << (const str_t value);
 	void operator << (const wstr_t value);
@@ -59,8 +58,7 @@ public:
 	void operator >> (INT64 *retVal);
 	void operator >> (UINT64 *retVal);
 
-	template<class T>
-	void operator >> (std::vector<T> *retVal);
+	void operator >> (std::vector<wstr_t> *retVal);
 
 	void operator >> (str_t *retVal);
 	void operator >> (wstr_t *retVal);

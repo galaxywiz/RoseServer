@@ -1,6 +1,8 @@
 #pragma once
 #include "stdafx.h"
 
+// 컨텐츠를 여기서 파생해서 구현합니다.
+
 #define MAX_PACKET_THREAD_		SIZE_64
 class ContentsProcess
 {

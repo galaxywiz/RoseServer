@@ -2,6 +2,8 @@
 #include "stdafx.h"
 #include "SessionManager.h"
 
+// 서버의 공통 모듈 처리
+
 enum SERVER_STATUS {
 	SERVER_STOP,
 	SERVER_INITIALZE,

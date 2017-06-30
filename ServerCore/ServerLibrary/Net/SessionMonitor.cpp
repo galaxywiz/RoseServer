@@ -15,13 +15,9 @@ SessionMonitor::SessionMonitor()
 
 void SessionMonitor::tick()
 {
-	//10초간 반응 없으면 끊기
-#ifdef _DEBUG
-	const int MAX_HEART_BEAT = 10000; //디버깅을 위해
-#else 
-	const int MAX_HEART_BEAT = 10;
-#endif 
-	auto list = SessionManager::getInstance().sessionList();
+	//15초간 반응 없으면 끊기
+	const int MAX_HEART_BEAT = 15 * 1000;
+	auto list = _session_manager.sessionList();
 	tick_t now = CLOCK.systemTick();
 
 	for (auto session : list) {
@@ -32,7 +28,7 @@ void SessionMonitor::tick()
 		tick_t lastTick = session->heartBeat();
 		if (now - lastTick > MAX_HEART_BEAT) {
 			SLog(L"* [%S] Closing by heartBeat", session->clientAddress().c_str());
-			session->onClose();
+			session->onClose(true);
 		}
 	}
 }

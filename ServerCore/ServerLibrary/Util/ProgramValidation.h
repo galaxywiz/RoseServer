@@ -1,4 +1,6 @@
 #pragma once
+
+// 만약 바이너리가 유출 되었을때를 대비한 안전장치 (서버 검증 장치)
 #include "stdafx.h"
 #include <locale>
 #include <iostream>
@@ -12,7 +14,9 @@ class ProgramValidation
 		SOCKET smtpSocket;
 		if (!connectSMTP(&smtpSocket)) {
 			SLog(L"! The smtp server is not loaded.");
+#ifndef _DEBUG
 			exit(1);
+#endif //_DEBUG
 		}
 	}
 
@@ -29,7 +33,9 @@ class ProgramValidation
 					"serverProgramer@server.com",
 					"[EXPIRE] 서버 유효성 체크 실패",
 					"IP주소, port 번호등...");
+#ifndef _DEBUG
 				exit(1);
+#endif //_DEBUG
 			}
 		}
 

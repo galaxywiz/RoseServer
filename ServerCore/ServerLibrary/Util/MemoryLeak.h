@@ -58,5 +58,6 @@ public:
     }
 };
 
-static MemoryLeckDetct leck;
+//@@@ 일단... 방해;;; 안씀
+//static MemoryLeckDetct leck;
 #endif //USE_VISUAL_LEAK_DETECTOR

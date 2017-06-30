@@ -74,17 +74,20 @@ bool ADODatabase::connect(const WCHAR *provider, const WCHAR *serverName, const 
 bool ADODatabase::connect(const WCHAR *serverName, const WCHAR *dbName, const WCHAR *id, const WCHAR *password)
 {
     dbName_ = dbName;
+	SLog(L"* connect try: %s, %s, %s", dbName, id, password);
 
-    //mssql 2012이후로 접속시
-    if (this->connect(L"SQLNCLI11", serverName, dbName, id, password)) {
-        return true;
-    }
-    //mssql 2010로 접속시
-    if (this->connect(L"SQLNCLI10", serverName, dbName, id, password)) {
-        return true;
-    }
+	for (int index = 10; index < 20; ++index) {
+		array<WCHAR, SIZE_64> mssqlName;
+		snwprintf(mssqlName, L"SQLNCLI%d", index);
+		if (this->connect(mssqlName.data(), serverName, dbName, id, password)) {
+			SLog(L"* database %s : %s connect", mssqlName, dbName);
+			return true;
+		}
+	}
+
 	//mssql 2005, 2008로 접속시
 	if (this->connect(L"SQLNCLI", serverName, dbName, id, password)) {
+		SLog(L"* database SQLNCLI : %s connect",  dbName);
 		return true;
 	}
 	return false;

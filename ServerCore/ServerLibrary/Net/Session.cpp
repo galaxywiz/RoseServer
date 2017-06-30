@@ -61,13 +61,17 @@ bool Session::onAccept(SOCKET socket, SOCKADDR_IN addrInfo)
 	if (!this->setSocketOpt()) {
 		return false;
 	}
-
 	return true;
 }
 
-void Session::onClose()
+void Session::onClose(bool force)
 {
-	SessionManager::getInstance().closeSession(this);	
+	if (force) {
+		_session_manager.forceCloseSession(this);
+	}
+	else {
+		_session_manager.closeSession(this);
+	}
 }
 
 SOCKET& Session::socket()

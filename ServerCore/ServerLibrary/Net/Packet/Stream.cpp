@@ -103,8 +103,7 @@ void Stream::operator << (const UINT64 &value)
 	STREAM_WRITE(value);
 }
 
-template<class T>
-void Stream::operator << (const std::vector<T> &value)
+void Stream::operator << (const std::vector<wstr_t> &value)
 {
 	*this << value.size();
 	for (auto i : value) {
@@ -197,14 +196,13 @@ void Stream::operator >> (UINT64 *retVal)
 	STREAM_READ(UINT64, retVal);
 }
 
-template<class T>
-void Stream::operator >> (std::vector<T> *retVal)
+void Stream::operator >> (std::vector<wstr_t> *retVal)
 {
 	size_t size;
 	*this >> &size;
 
 	for (size_t i = 0; i < size; ++i) {
-		T tmp;
+		wstr_t tmp;
 		*this >> &tmp;
 		retVal->push_back(tmp);
 	}

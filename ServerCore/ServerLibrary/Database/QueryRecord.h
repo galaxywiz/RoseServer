@@ -31,7 +31,8 @@ public:
 
 	bool		get(char* fieldName, char* fieldValue);
 	bool		get(char* fieldName, wchar_t* fieldValue);
-	bool		get(char* fieldName, int& fieldValue);
+	bool		get(char* fieldName, int32_t& fieldValue);
+	bool		get(char* fieldName, int64_t& fieldValue);
 	bool		get(char* fieldName, float& fieldValue);
 	bool		get(char* fieldName, double& fieldValue);
 	bool		get(char* fieldName, long& fieldValue);

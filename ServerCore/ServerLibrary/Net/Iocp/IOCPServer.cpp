@@ -71,7 +71,7 @@ bool IOCPServer::run()
 		std::getline(std::wcin, cmdLine);
 
 		SLog(L"Input was: %s", cmdLine.c_str());
-		SessionManager::getInstance().runCommand(cmdLine);
+		_session_manager.runCommand(cmdLine);
 	}
 	return true;
 }
@@ -97,7 +97,7 @@ void IOCPServer::onAccept(SOCKET accepter, SOCKADDR_IN addrInfo)
 		SAFE_DELETE(session);
 		return;
 	}
-	if (!SessionManager::getInstance().addSession(session)) {
+	if (!_session_manager.addSession(session)) {
 		SAFE_DELETE(session);
 		return;
 	}
@@ -155,7 +155,7 @@ DWORD WINAPI IOCPServer::workerThread(LPVOID serverPtr)
 			return 0;
 		}
 		if (transferSize == 0) {
-			SessionManager::getInstance().closeSession(session);
+			_session_manager.closeSession(session);
 			continue;
 		}
 
@@ -174,7 +174,7 @@ DWORD WINAPI IOCPServer::workerThread(LPVOID serverPtr)
 			continue;
 
 		case IO_ERROR:
-			SessionManager::getInstance().closeSession(session);
+			_session_manager.closeSession(session);
 			continue;
 		}
 	}

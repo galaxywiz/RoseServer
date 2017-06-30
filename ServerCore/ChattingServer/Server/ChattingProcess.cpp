@@ -27,7 +27,7 @@ void ChattingProcess::I_CHTTING_NOTIFY_ID(Session *session, Packet *rowPacket)
 	dbPacket.clientId_ = packet->clientId_;
 	dbPacket.oidAccountId_ = packet->oidAccountId_;
 
-	Terminal *terminal = TerminalManager::getInstance().terminal(L"DBAgent");
+	Terminal *terminal = _terminal.get(L"DBAgent");
 	terminal->sendPacket(&dbPacket);
 }
 
@@ -41,7 +41,7 @@ void ChattingProcess::I_DB_ANS_PARSE_DATA(Session *session, Packet *rowPacket)
 	iPacket.result_ = packet->result_;
 
 	SLog(L"* [%S] name load from db", iPacket.name_.c_str());
-	Terminal *terminal = TerminalManager::getInstance().terminal(L"LoginServer");
+	Terminal *terminal = _terminal.get(L"LoginServer");
 	terminal->sendPacket(&iPacket);
 }
 

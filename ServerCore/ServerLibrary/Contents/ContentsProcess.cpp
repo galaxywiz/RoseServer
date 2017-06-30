@@ -65,7 +65,9 @@ void ContentsProcess::run(Package *package)
 		package->session_->onClose();
 		return;
 	}
+#ifdef _DEBUG
 	SLog(L"*** [%d] packet run ***", type);
+#endif //_DEBUG
 	runFunction(package->session_, package->packet_);
 }
 
@@ -77,6 +79,7 @@ void ContentsProcess::execute()
 	}
 
 	this->run(package);
+	
 	SAFE_DELETE(package);
 }
 

@@ -44,6 +44,7 @@ void DBManager::initialize(xml_t *config)
 		ADODatabase *adodb = new ADODatabase();
 		dbPool_.push_back(adodb);
 	}
+	this->run();
 }
 
 DBManager::~DBManager()

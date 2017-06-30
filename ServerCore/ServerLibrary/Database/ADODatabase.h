@@ -33,8 +33,9 @@ public:
     bool connected();
     bool disconnect();
     
+	void run();
+
 private:
     void execute();
     void process();
-    void run();
 };

@@ -11,7 +11,7 @@ Packet* PacketAnalyzer::analyzer(const char *rowPacket, size_t size)
 	memcpy_s((void *)type, sizeof(type), (void *)rowPacket, sizeof(type));
 	offset += sizeof(type);
 
-	Packet *packet = PacketFactory::getInstance().getPacket(type[0]);
+	Packet *packet = _packet_factory.getPacket(type[0]);
 	if (packet) {
 		if (offset < size) {
 			Stream stream((UCHAR *)(rowPacket + offset), size - offset);

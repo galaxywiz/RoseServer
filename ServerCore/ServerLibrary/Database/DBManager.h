@@ -2,6 +2,8 @@
 #include "stdafx.h"
 #include "ADODatabase.h"
 
+#define _db_manager		DBManager::getInstance()
+
 class DBManager : public Singleton < DBManager >
 {
 	int                                 workerCount_;
