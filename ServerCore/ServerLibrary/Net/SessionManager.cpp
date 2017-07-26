@@ -115,6 +115,11 @@ void SessionManager::runCommand(wstr_t cmdLine)
 		command = cmdLine;
 	}
 
+	auto itr = serverCommand_.find(command);
+	if (itr == serverCommand_.end()) {
+		return;
+	}
+
 	auto cmdFunc = serverCommand_.at(command);
 	if (cmdFunc) {
 		cmdFunc(&sessionList_, &arg);

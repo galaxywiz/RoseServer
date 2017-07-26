@@ -44,12 +44,16 @@ void TerminalManager::put(wstr_t serverName, Terminal *terminal)
 
 Terminal* TerminalManager::get(wstr_t name)
 {
+	auto itr = terminalPool_.find(name);
+	if (itr == terminalPool_.end()) {
+		return nullptr;
+	}
 	return terminalPool_.at(name);
 }
 
 bool TerminalManager::isTerminal(const char *ip)
 {
-	for (auto terminal : terminalPool_)	{
+	for (auto terminal : terminalPool_) {
 		if (!strcmp(terminal.second->ip(), ip)) {
 			return true;
 		}
