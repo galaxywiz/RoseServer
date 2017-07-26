@@ -59,12 +59,13 @@ void ContentsProcess::putPackage(Package *package)
 void ContentsProcess::run(Package *package)
 {
 	PacketType type = package->packet_->type();
-	RunFunc runFunction = runFuncTable_.at(type);
-	if (runFunction == nullptr) {
+	auto itr = runFuncTable_.find(type);
+	if (itr == runFuncTable_.end()) {
 		SLog(L"! invaild packet runFunction. type[%d]", type);
 		package->session_->onClose();
 		return;
 	}
+	RunFunc runFunction = itr->second;
 #ifdef _DEBUG
 	SLog(L"*** [%d] packet run ***", type);
 #endif //_DEBUG
