@@ -27,7 +27,7 @@ void SessionMonitor::tick()
 
 		tick_t lastTick = session->heartBeat();
 		if (now - lastTick > MAX_HEART_BEAT) {
-			SLog(L"* [%S] Closing by heartBeat", session->clientAddress().c_str());
+			SLog(L"* [%s] Closing by heartBeat", session->clientAddress().c_str());
 			session->onClose(true);
 		}
 	}

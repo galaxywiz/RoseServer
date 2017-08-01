@@ -50,7 +50,7 @@ void ChattingProcess::C_REQ_REGIST_CHATTING_NAME(Session *session, Packet *rowPa
 	PK_C_REQ_REGIST_CHATTING_NAME *packet = (PK_C_REQ_REGIST_CHATTING_NAME *)rowPacket;
 	User *user = UserManager::getInstance().at(session->id());
 	if (user != nullptr) {
-		SLog(L"! try duplicate regist : %S, name : %S", session->clientAddress().c_str(), packet->name_.c_str());
+		SLog(L"! try duplicate regist : %s, name : %S", session->clientAddress().c_str(), packet->name_.c_str());
 		session->onClose();
 		return;
 	}
@@ -61,7 +61,7 @@ void ChattingProcess::C_REQ_REGIST_CHATTING_NAME(Session *session, Packet *rowPa
 	user->setName(userName.data());
 	UserManager::getInstance().insert(user);
 	
-	SLog(L"* user [%S] created from [%S]", userName.data(), session->clientAddress().c_str());
+	SLog(L"* user [%s] created from [%S]", userName.data(), session->clientAddress().c_str());
 }
 
 void ChattingProcess::C_REQ_CHATTING(Session *session, Packet *rowPacket)
@@ -70,7 +70,7 @@ void ChattingProcess::C_REQ_CHATTING(Session *session, Packet *rowPacket)
 	
 	User *user = UserManager::getInstance().at(session->id());
 	if (user == nullptr) {
-		SLog(L"! not registed : %S", session->clientAddress().c_str());
+		SLog(L"! not registed : %s", session->clientAddress().c_str());
 		session->onClose();
 		return;
 	}
@@ -92,13 +92,13 @@ void ChattingProcess::C_REQ_EXIT(Session *session, Packet *rowPacket)
 	PK_C_REQ_EXIT *packet = (PK_C_REQ_EXIT *)rowPacket;
 	User *user = UserManager::getInstance().at(session->id());
 	if (user == nullptr) {
-		SLog(L"! not registed : %S", session->clientAddress().c_str());
+		SLog(L"! not registed : %s", session->clientAddress().c_str());
 		session->onClose();
 		return;
 	}
 	UserManager::getInstance().remove(session->id());
 
 	PK_S_ANS_EXIT ansPacket;
-	SLog(L"* recv exit packet by [%S]", session->clientAddress().c_str());
+	SLog(L"* recv exit packet by [%s]", session->clientAddress().c_str());
 	session->sendPacket(&ansPacket);
 }

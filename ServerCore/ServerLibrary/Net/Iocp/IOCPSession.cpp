@@ -203,8 +203,8 @@ Package *IOCPSession::onRecv(size_t transferSize)
 	PacketObfuscation::getInstance().decodingData(packetData, packetDataSize);
 	Packet *packet = PacketAnalyzer::getInstance().analyzer((const char *)packetData, packetDataSize);
 	if (packet == nullptr) {
-		SLog(L"! invalid packet");
-		this->onClose();
+		SLog(L"! invaild packet");
+		this->onClose(true);
 		return nullptr;
 	}
 

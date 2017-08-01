@@ -78,6 +78,6 @@ void LoginProcess::I_LOGIN_NOTIFY_ID_LOADED(Session *session, Packet *rowPacket)
 	ansPacket.port_ = terminal->port();
 	ansPacket.name_ = packet->name_;
 
-	SLog(L"* loaded [%S] user name, from [%S]", ansPacket.name_.c_str(), session->clientAddress().c_str());
+	SLog(L"* loaded [%S] user name, from [%s]", ansPacket.name_.c_str(), session->clientAddress().c_str());
 	clientSession->sendPacket(&ansPacket);
 }

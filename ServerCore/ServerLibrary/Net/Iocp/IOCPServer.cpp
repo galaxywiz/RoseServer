@@ -109,7 +109,7 @@ void IOCPServer::onAccept(SOCKET accepter, SOCKADDR_IN addrInfo)
 		return;
 	}
     
-    SLog(L"* client accecpt from [%S]", session->clientAddress().c_str());
+    SLog(L"* client accecpt from [%s]", session->clientAddress().c_str());
 	session->recvStandBy();
 }
 
@@ -155,6 +155,7 @@ DWORD WINAPI IOCPServer::workerThread(LPVOID serverPtr)
 			return 0;
 		}
 		if (transferSize == 0) {
+			SLog(L"* close by client[%d][%s]", session->id(), session->clientAddress().c_str());
 			_session_manager.closeSession(session);
 			continue;
 		}
@@ -174,6 +175,7 @@ DWORD WINAPI IOCPServer::workerThread(LPVOID serverPtr)
 			continue;
 
 		case IO_ERROR:
+			SLog(L"* close by client error [%d][%s]", session->id(), session->clientAddress().c_str());
 			_session_manager.closeSession(session);
 			continue;
 		}

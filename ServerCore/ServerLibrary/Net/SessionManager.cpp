@@ -59,7 +59,7 @@ bool SessionManager::closeSession(Session *session)
 	auto findSession = std::find(sessionList_.begin(), sessionList_.end(), session);
 	if (findSession != sessionList_.end()) {
 		Session *delSession = *findSession;
-		SLog(L"* detected close by client [%S]", delSession->clientAddress().c_str());
+		SLog(L"* detected close by client [%s]", delSession->clientAddress().c_str());
 		::closesocket(delSession->socket());
 
 		sessionList_.remove(delSession);

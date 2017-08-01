@@ -79,11 +79,16 @@ SOCKET& Session::socket()
 	return socketData_.socket_;
 }
 
-str_t Session::clientAddress()
+wstr_t Session::clientAddress()
 {
 	array<char, SIZE_64> ip;
 	inet_ntop(AF_INET, &(socketData_.addrInfo_.sin_addr), ip.data(), ip.size());
-    return ip.data();
+
+	array<WCHAR, SIZE_64> wip;
+	StrConvA2W(ip.data(), wip.data(), wip.max_size());
+	wstr_t stringData = wip.data();
+
+	return stringData;
 }
 
 oid_t Session::id()

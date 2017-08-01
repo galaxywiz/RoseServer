@@ -37,7 +37,7 @@ public:
     virtual void		onClose(bool force = false);
 
 	SOCKET&				socket();
-    str_t				clientAddress();
+    wstr_t				clientAddress();
 
 	oid_t				id();
 	void				setId(oid_t id);
